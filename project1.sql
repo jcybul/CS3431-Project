@@ -85,6 +85,9 @@ create table OrganTransplant (
 	constraint OrganTransplant_fk1 foreign key (physicianNum) references Surgeon (physicianNum),
 	constraint OrganTransplant_fk2 foreign key (patientID) references Patient (patientID)
 );
+create sequence onvoiceNumID_seq
+start with 100
+increment by 5;
 
 
 create table Organ (
