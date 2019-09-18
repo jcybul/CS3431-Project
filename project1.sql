@@ -146,4 +146,4 @@ from Doctor D join Surgeon S
  
  select * 
 from Doctor D join OP O
- on D.physicianNum = OP.physicianNum;
+ on D.physicianNum = O.physicianNum;
