@@ -161,6 +161,29 @@ insert into Patient values (patientID_seq.nextval,'Grace','Ferguson','Akron','OH
 insert into Patient values (patientID_seq.nextval,'Alina','Cooper','Cleveland','OH','A+','19-Jul-80',110);
 insert into Patient values (patientID_seq.nextval,'Alissa','Reed','Anchorage','AK','A+','02-Dec-91',115);
 insert into Patient values (patientID_seq.nextval,'Elise','Wright','Phoenix','AZ','A-','30-Aug-55',120);
+					  
+
+					  
+insert into OrganTransplant values (125,100,invoiceNumID_seq.nextval,'1-Sep-19','F',10654.50);
+insert into OrganTransplant values (130,105,invoiceNumID_seq.nextval,'1-Sep-19','T',110.5);
+insert into OrganTransplant values (135,110,invoiceNumID_seq.nextval,'1-Sep-19','T',1203.90);
+insert into OrganTransplant values (140,115,invoiceNumID_seq.nextval,'1-Sep-19','T',13045.4);
+insert into OrganTransplant values (145,120,invoiceNumID_seq.nextval,'1-Sep-19','F',1000.3);
+insert into OrganTransplant values (125,125,invoiceNumID_seq.nextval,'1-Sep-19','T',100.12);
+insert into OrganTransplant values (130,130,invoiceNumID_seq.nextval,'1-Sep-19','T',10033.90);
+insert into OrganTransplant values (135,135,invoiceNumID_seq.nextval,'1-Sep-19','T',40000.10);
+insert into OrganTransplant values (140,140,invoiceNumID_seq.nextval,'1-Sep-19','T',143534);
+insert into OrganTransplant values (145,145,invoiceNumID_seq.nextval,'1-Sep-19','T',1345.4);
+insert into OrganTransplant values (125,150,invoiceNumID_seq.nextval,'1-Sep-19','T',10435.90);
+insert into OrganTransplant values (135,155,invoiceNumID_seq.nextval,'1-Sep-19','T',14540);
+insert into OrganTransplant values (130,160,invoiceNumID_seq.nextval,'1-Sep-19','T',10340);
+insert into OrganTransplant values (145,165,invoiceNumID_seq.nextval,'1-Sep-19','T',104350);
+insert into OrganTransplant values (140,170,invoiceNumID_seq.nextval,'1-Sep-19','T',10000.09);
+insert into OrganTransplant values (125,175,invoiceNumID_seq.nextval,'1-Sep-19','T',1030.04);
+insert into OrganTransplant values (135,180,invoiceNumID_seq.nextval,'1-Sep-19','T',10340.90);
+insert into OrganTransplant values (125,185,invoiceNumID_seq.nextval,'1-Sep-19','T',1034.23);
+insert into OrganTransplant values (145,190,invoiceNumID_seq.nextval,'1-Sep-19','T',12134.45);
+insert into OrganTransplant values (130,195,invoiceNumID_seq.nextval,'1-Sep-19','F',1000.345);
 
 select * 
 from Doctor D join PCP P
