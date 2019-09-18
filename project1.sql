@@ -117,8 +117,8 @@ insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Rocco', 'Ayala')
 insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Patience', 'Cantu');
 
 insert into Doctor values(physicianNum_seq.nextval, 'OP', 'Mathias', 'Guerra');
-insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Maryjane', 'Clay');
-insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Eric', 'Weiss');
+insert into Doctor values(physicianNum_seq.nextval, 'OP', 'Maryjane', 'Clay');
+insert into Doctor values(physicianNum_seq.nextval, 'OP', 'Eric', 'Weiss');
 
 insert into PCP values(100, 'PCP', 'Family Medicine', 'Reliant Medical');
 insert into PCP values(105, 'PCP', 'Internal Medicine', 'Cape Code Medical');
