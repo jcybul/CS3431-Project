@@ -80,12 +80,14 @@ create table OrganTransplant (
 	invoiceNum number,
 	operationDate date,
 	isSuccessful char(1),
-	amountCharged number,
+	amountCharged number(12,2),
 	constraint OrganTransplant_pk primary key (physicianNum, patientID, invoiceNum),
 	constraint OrganTransplant_fk1 foreign key (physicianNum) references Surgeon (physicianNum),
-	constraint OrganTransplant_fk2 foreign key (patientID) references Patient (patientID)
+	constraint OrganTransplant_fk2 foreign key (patientID) references Patient (patientID),
+	constraint isSuccessfulVal check (isSuccessful in ('T', 'F'))
 );
-create sequence onvoiceNumID_seq
+					  
+create sequence invoiceNumID_seq
 start with 100
 increment by 5;
 
