@@ -136,6 +136,27 @@ insert into OP values(150, 'OP', 'Kidney Foundation', 'Kidney');
 insert into OP values(155, 'OP', 'The Living Bank', 'Heart');
 insert into OP values(160, 'OP', 'Donate Life America', 'Lungs');
 
+insert into Patient values (patientID_seq.nextval,'Carl','Stein','Boston','MA','A+','14-May-75',100);
+insert into Patient values (patientID_seq.nextval,'James','Lloyd','Cambridge','MA','A+','14-May-89',105);
+insert into Patient values (patientID_seq.nextval,'Roman','Phillips','Worcester','MA','O-','13-Jun-62',110);
+insert into Patient values (patientID_seq.nextval,'Daryl','Miller','Waltham','MA','B+','16-Apr-76',115);
+insert into Patient values (patientID_seq.nextval,'Darcy','Carroll','Miami','FL','B-','06-Nov-79',120);
+insert into Patient values (patientID_seq.nextval,'Kevin','Hamilton','Austin','TX','O-','31-Dec-90',100);
+insert into Patient values (patientID_seq.nextval,'Violet','Casey','Houston','TX','AB+','19-Oct-99',105);
+insert into Patient values (patientID_seq.nextval,'Richard','Watson','Jersey','NY','B+','29-Aug-05',110);
+insert into Patient values (patientID_seq.nextval,'Grace','Foster','Buffalo','NY','B+','10-Aug-87',115);
+insert into Patient values (patientID_seq.nextval,'Adam','Tucker','Syracuse','NY','AB-','02-Aug-83',120);
+insert into Patient values (patientID_seq.nextval,'Robert','Robinson','Los Angels','CA','B+','09-Jan-89',100);
+insert into Patient values (patientID_seq.nextval,'Amber','Sullivan','Los Angels','CA','O+','17-May-68',105);
+insert into Patient values (patientID_seq.nextval,'Arnold','Owens','Chula Vista','CA','B-','14-Jul-95',115);
+insert into Patient values (patientID_seq.nextval,'Melissa','Casey','Dallas','TX','A+','16-Apr-99',120);
+insert into Patient values (patientID_seq.nextval,'Melanie','Perkins','Forth Worth','TX','O+','21-Jun-81',110);
+insert into Patient values (patientID_seq.nextval,'Marcus','Murphy','El paso','TX','A-','11-Jun-77',100);
+insert into Patient values (patientID_seq.nextval,'Grace','Ferguson','Akron','OH','A-','12-Jun-83',105);
+insert into Patient values (patientID_seq.nextval,'Alina','Cooper','Cleveland','OH','A+','19-Jul-80',110);
+insert into Patient values (patientID_seq.nextval,'Alissa','Reed','Anchorage','AK','A+','02-Dec-91',115);
+insert into Patient values (patientID_seq.nextval,'Elise','Wright','Phoenix','AZ','A-','30-Aug-55',120);
+
 select * 
 from Doctor D join PCP P
  on D.physicianNum = P.physicianNum;
