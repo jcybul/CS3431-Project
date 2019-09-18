@@ -102,4 +102,48 @@ create sequence organID_seq
 start with 100
 increment by 5;
 
+-- 4
 
+insert into Doctor values(physicianNum_seq.nextval, 'PCP', 'Matthew', 'Cantu');
+insert into Doctor values(physicianNum_seq.nextval, 'PCP', 'Chana', 'Owen');
+insert into Doctor values(physicianNum_seq.nextval, 'PCP', 'Noelle', 'Jordan');
+insert into Doctor values(physicianNum_seq.nextval, 'PCP', 'Henry', 'Mcbridge');
+insert into Doctor values(physicianNum_seq.nextval, 'PCP', 'Terrell', 'Riley');
+
+insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Trace', 'Ashley');
+insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Rey', 'Frye');
+insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Sterling', 'Weber');
+insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Rocco', 'Ayala');
+insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Patience', 'Cantu');
+
+insert into Doctor values(physicianNum_seq.nextval, 'OP', 'Mathias', 'Guerra');
+insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Maryjane', 'Clay');
+insert into Doctor values(physicianNum_seq.nextval, 'Surgeon', 'Eric', 'Weiss');
+
+insert into PCP values(100, 'PCP', 'Family Medicine', 'Reliant Medical');
+insert into PCP values(105, 'PCP', 'Internal Medicine', 'Cape Code Medical');
+insert into PCP values(110, 'PCP', 'Pediatrics', 'Tufts Medical');
+insert into PCP values(115, 'PCP', 'Geriatrics', 'Boston Medical');
+insert into PCP values(120, 'PCP', 'Pediatrics', 'Boston Medical');
+
+insert into Surgeon values(125, 'Surgeon', 'T');
+insert into Surgeon values(130, 'Surgeon', 'F');
+insert into Surgeon values(135, 'Surgeon', 'T');
+insert into Surgeon values(140, 'Surgeon', 'F');
+insert into Surgeon values(145, 'Surgeon', 'T');
+
+insert into OP values(150, 'OP', 'Kidney Foundation', 'Kidney');
+insert into OP values(155, 'OP', 'The Living Bank', 'Heart');
+insert into OP values(160, 'OP', 'Donate Life America', 'Lungs');
+
+select * 
+from Doctor D join PCP P
+ on D.physicianNum = P.physicianNum;
+
+select * 
+from Doctor D join Surgeon S
+ on D.physicianNum = S.physicianNum;
+ 
+ select * 
+from Doctor D join OP O
+ on D.physicianNum = OP.physicianNum;
