@@ -318,3 +318,17 @@ End if;
 end;
 /
 
+Create or replace Trigger FailedOperation 
+before insert on Operation 
+for each row declare
+tempBloodTypePatient varchar2(25);
+tempBloodTypeOrgan varchar2(25);
+Begin 
+Select bloodtype into tempBloodTypePatient from Patient where healthCareID = (:new.healthCareID);
+Select bloodtype into tempBloodTypeOrgan from Organ where healthCareID = (:new.healthCareID);
+
+    If(tempBloodTypeOrgan != tempBloodTypePatient) then
+    :new.isSuccessful := 'F';
+    end if;
+end;
+/
