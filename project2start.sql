@@ -256,12 +256,20 @@ on o.physicianID = s.physicianID
 where s.role = 'Surgeon';
 
 Begin
+op_number:= 0;
 For rec in c1 Loop
     IF rec.firstname = firstname AND rec.lastname = lastname then
         op_number := op_number + 1;
     END if;
 END loop;
-DBMS_OUTPUT.PUT_LINE('Dr.'|| firstname || ' ' || lastname || ': ' || op_number);
+If op_number > 0 then 
+DBMS_OUTPUT.PUT_LINE('Dr. '|| firstname || ' ' || lastname || ': ' || op_number|| ' operations');
+ELSE
+DBMS_OUTPUT.PUT_LINE('There is no surgeon that has operated with the name of Dr. '|| firstname || ' ' || lastname);
+END IF;
 END;
 /
+----------------------------------
+set serveroutput on;
+exec SurgeonOperations('Jhon','Smith');
 
