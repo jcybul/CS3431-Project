@@ -245,3 +245,23 @@ group by rollup (op.organtype,o.bloodtype)
 order by op.organtype,o.bloodtype;
 
 Select * from MatchingBloodTypes;
+				       
+				    
+Create or replace procedure SurgeonOperations(firstname varchar2, lastname varchar2) as 
+op_number number;
+Cursor c1 is 
+Select s.firstName, s.lastName
+from operation o join doctor s
+on o.physicianID = s.physicianID
+where s.role = 'Surgeon';
+
+Begin
+For rec in c1 Loop
+    IF rec.firstname = firstname AND rec.lastname = lastname then
+        op_number := op_number + 1;
+    END if;
+END loop;
+DBMS_OUTPUT.PUT_LINE('Dr.'|| firstname || ' ' || lastname || ': ' || op_number);
+END;
+/
+
