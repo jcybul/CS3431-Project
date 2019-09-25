@@ -196,26 +196,25 @@ insert into Operation values (145,190,invoiceNumber_seq.nextval,'1-Sep-19','T',1
 insert into Operation values (130,195,invoiceNumber_seq.nextval,'1-Sep-19','F',1000.345);
 				       
 				       
-				       
-				       
-insert into Organ values (organID_seq.nextval,150,'O',3-Oct-18,100);
-insert into Organ values (organID_seq.nextval,150,'A',3-Oct-17,105);
-insert into Organ values (organID_seq.nextval,150,'B',3-Oct-18,110);
-insert into Organ values (organID_seq.nextval,150,'AB',3-Oct-16,115);
-insert into Organ values (organID_seq.nextval,150,'O',3-Oct-18,120);
-insert into Organ values (organID_seq.nextval,150,'A',3-Oct-18,125);
-insert into Organ values (organID_seq.nextval,150,'B',3-Oct-12,130);
-insert into Organ values (organID_seq.nextval,150,'AB',3-Oct-18,135);
-insert into Organ values (organID_seq.nextval,150,'O',3-Oct-18,140);
-insert into Organ values (organID_seq.nextval,150,'A',3-Oct-18,145);
-insert into Organ values (organID_seq.nextval,150,'B',3-Oct-13,150);
-insert into Organ values (organID_seq.nextval,150,'AB',3-Oct-18,155);
-insert into Organ values (organID_seq.nextval,150,'O',3-Oct-18,160);
-insert into Organ values (organID_seq.nextval,150,'A',3-Oct-18,165);
-insert into Organ values (organID_seq.nextval,150,'B',3-Oct-18,170);
-insert into Organ values (organID_seq.nextval,150,'AB',3-Oct-18,175);
-insert into Organ values (organID_seq.nextval,150,'O',3-Oct-18,180);
-insert into Organ values (organID_seq.nextval,150,'A',3-Oct-18,185);
-insert into Organ values (organID_seq.nextval,150,'B',3-Oct-18,190);
-insert into Organ values (organID_seq.nextval,150,'AB',3-Oct-18,195);
+insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',100);
+insert into Organ values (organID_seq.nextval,150,'A','3-Oct-17',105);
+insert into Organ values (organID_seq.nextval,150,'B','3-Oct-18',110);
+insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-16',115);
+insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',120);
+insert into Organ values (organID_seq.nextval,150,'A','3-Oct-18',125);
+insert into Organ values (organID_seq.nextval,150,'B','3-Oct-12',130);
+insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-18',135);
+insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',140);
+insert into Organ values (organID_seq.nextval,150,'A','3-Oct-18',145);
+insert into Organ values (organID_seq.nextval,150,'B','3-Oct-13',150);
+insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-18',155);
+insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',160);
+insert into Organ values (organID_seq.nextval,150,'A','3-Oct-18',165);
+insert into Organ values (organID_seq.nextval,150,'B','3-Oct-18',170);
+insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-18',175);
+insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',180);
+insert into Organ values (organID_seq.nextval,150,'A','3-Oct-18',185);
+insert into Organ values (organID_seq.nextval,150,'B','3-Oct-18',190);
+insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-18',195);
+
 				    
