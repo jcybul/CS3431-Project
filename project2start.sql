@@ -247,6 +247,19 @@ order by op.organtype,o.bloodtype;
 Select * from MatchingBloodTypes;
 				       
 				    
+Create view MatchingBloodTypes as 
+Select op.organtype as organType ,o.bloodtype as bType, Count(*)as cnt from
+organ o join patient p
+on o.bloodtype = p.bloodtype 
+join op
+on o.physicianid = op.physicianid
+group by rollup (op.organtype,o.bloodtype)
+order by op.organtype,o.bloodtype;
+
+Select * from MatchingBloodTypes;
+--------------------------------
+
+
 Create or replace procedure SurgeonOperations(firstname varchar2, lastname varchar2) as 
 op_number number;
 Cursor c1 is 
@@ -265,8 +278,11 @@ END loop;
 If op_number > 0 then 
 DBMS_OUTPUT.PUT_LINE('Dr. '|| firstname || ' ' || lastname || ': ' || op_number|| ' operations');
 ELSE
-DBMS_OUTPUT.PUT_LINE('There is no surgeon that has operated with the name of Dr. '|| firstname || ' ' || lastname);
+RAISE NO_DATA_FOUND;
 END IF;
+EXCEPTION 
+WHEN NO_DATA_FOUND then 
+DBMS_OUTPUT.PUT_LINE('There is no surgeon that has operated with the name of Dr. '|| firstname || ' ' || lastname);
 END;
 /
 ----------------------------------
@@ -286,5 +302,19 @@ IF (:new.birthdate > tempdate) then
 END If;
 end;
 /
-				       
+
+Create or replace trigger BadBloodType 
+before insert on Operation
+for each row declare 
+tempBloodTypePatient varchar2(25);
+tempBloodTypeOrgan varchar2(25);
+Begin 
+Select bloodtype into tempBloodTypePatient from Patient where healthCareID = (:new.healthCareID);
+Select bloodtype into tempBloodTypeOrgan from Organ where healthCareID = (:new.healthCareID);
+
+If(tempBloodTypeOrgan != tempBloodTypePatient) then 
+RAISE_APPLICATION_ERROR(-20004,'Different bloodtypes');
+End if;
+end;
+/
 
