@@ -27,8 +27,8 @@ increment by 5;
 create table OP (
 	physicianID number,
 	Role varchar2(25) default 'OP' not null,
-	organType varchar2(25),
 	organBank varchar2(25),
+	organType varchar2(25),
 	constraint OP_PK primary key (physicianID),
 	constraint OPRoleVal check (Role in ('OP')),
 	constraint OP_FK foreign key (physicianID, Role) references Doctor (physicianID, Role)
@@ -60,8 +60,8 @@ create table Patient (
 	lastName varchar2(25),
 	city varchar2(25),
 	state char(2),
-	birthDate date,
 	bloodType varchar2(25),
+	birthDate date,
 	physicianID number,
 	constraint Patient_PK primary key (healthCareID),
 	constraint Patient_FK foreign key (physicianID) references PCP(physicianID),
@@ -89,12 +89,12 @@ create table Organ (
 );
 
 create table Operation (
+	physicianID number,
+	healthCareID number,
 	invoiceNumber number,
 	operationDate date,
 	isSuccessful char(1),
 	cost number(9,2),
-	physicianID number,
-	healthCareID number,
 	constraint Operation_PK primary key (invoiceNumber),
 	constraint Operation_FK1 foreign key (physicianID) references Surgeon (physicianID),
 	constraint Operation_FK2 foreign key (healthCareID) references Patient(healthCareID),
