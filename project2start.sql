@@ -8,6 +8,7 @@ drop table Operation cascade constraint;
 drop table SurgeonPatient cascade constraint;
 drop sequence physicianID_seq;
 drop sequence healthCareID_seq;
+drop sequence organID_seq;
 drop sequence invoiceNumber_seq;
 
 create table Doctor (
@@ -87,6 +88,11 @@ create table Organ (
 	constraint Organ_FK2 foreign key (healthCareID) references Patient(healthCareID),
 	constraint OrganVal check (bloodType in ('A', 'B', 'AB', 'O'))
 );
+				   
+create sequence organID_seq
+start with 100
+increment by 5;
+				   
 
 create table Operation (
 	physicianID number,
@@ -150,21 +156,21 @@ insert into Patient values (healthCareID_seq.nextval,'James','Lloyd','Cambridge'
 insert into Patient values (healthCareID_seq.nextval,'Roman','Phillips','Worcester','MA','A','13-Jun-62',110);
 insert into Patient values (healthCareID_seq.nextval,'Daryl','Miller','Waltham','MA','A','16-Apr-76',115);
 insert into Patient values (healthCareID_seq.nextval,'Darcy','Carroll','Miami','FL','A','06-Nov-79',120);
-insert into Patient values (healthCareID_seq.nextval,'Kevin','Hamilton','Austin','TX','A','31-Dec-90',100);
-insert into Patient values (healthCareID_seq.nextval,'Violet','Casey','Houston','TX','AA','19-Oct-99',105);
-insert into Patient values (healthCareID_seq.nextval,'Richard','Watson','Jersey','NY','A','29-Aug-05',110);
-insert into Patient values (healthCareID_seq.nextval,'Grace','Foster','Buffalo','NY','A','10-Aug-87',115);
-insert into Patient values (healthCareID_seq.nextval,'Adam','Tucker','Syracuse','NY','AA','02-Aug-83',120);
-insert into Patient values (healthCareID_seq.nextval,'Robert','Robinson','Los Angels','CA','A','09-Jan-89',100);
-insert into Patient values (healthCareID_seq.nextval,'Amber','Sullivan','Los Angels','CA','A','17-May-68',105);
-insert into Patient values (healthCareID_seq.nextval,'Arnold','Owens','Chula Vista','CA','A','14-Jul-95',115);
-insert into Patient values (healthCareID_seq.nextval,'Melissa','Casey','Dallas','TX','A','16-Apr-99',120);
-insert into Patient values (healthCareID_seq.nextval,'Melanie','Perkins','Forth Worth','TX','A','21-Jun-81',110);
-insert into Patient values (healthCareID_seq.nextval,'Marcus','Murphy','El paso','TX','A','11-Jun-77',100);
-insert into Patient values (healthCareID_seq.nextval,'Grace','Ferguson','Akron','OH','A','12-Jun-83',105);
-insert into Patient values (healthCareID_seq.nextval,'Alina','Cooper','Cleveland','OH','A','19-Jul-80',110);
-insert into Patient values (healthCareID_seq.nextval,'Alissa','Reed','Anchorage','AK','A','02-Dec-91',115);
-insert into Patient values (healthCareID_seq.nextval,'Elise','Wright','Phoenix','AZ','A','30-Aug-55',120);
+insert into Patient values (healthCareID_seq.nextval,'Kevin','Hamilton','Austin','TX','B','31-Dec-90',100);
+insert into Patient values (healthCareID_seq.nextval,'Violet','Casey','Houston','TX','B','19-Oct-99',105);
+insert into Patient values (healthCareID_seq.nextval,'Richard','Watson','Jersey','NY','B','29-Aug-05',110);
+insert into Patient values (healthCareID_seq.nextval,'Grace','Foster','Buffalo','NY','B','10-Aug-87',115);
+insert into Patient values (healthCareID_seq.nextval,'Adam','Tucker','Syracuse','NY','B','02-Aug-83',120);
+insert into Patient values (healthCareID_seq.nextval,'Robert','Robinson','Los Angeles','CA','AB','09-Jan-89',100);
+insert into Patient values (healthCareID_seq.nextval,'Amber','Sullivan','Los Angeles','CA','AB','17-May-68',105);
+insert into Patient values (healthCareID_seq.nextval,'Arnold','Owens','Chula Vista','CA','AB','14-Jul-95',115);
+insert into Patient values (healthCareID_seq.nextval,'Melissa','Casey','Dallas','TX','AB','16-Apr-99',120);
+insert into Patient values (healthCareID_seq.nextval,'Melanie','Perkins','Forth Worth','TX','AB','21-Jun-81',110);
+insert into Patient values (healthCareID_seq.nextval,'Marcus','Murphy','El Paso','TX','O','11-Jun-77',100);
+insert into Patient values (healthCareID_seq.nextval,'Grace','Ferguson','Akron','OH','O','12-Jun-83',105);
+insert into Patient values (healthCareID_seq.nextval,'Alina','Cooper','Cleveland','OH','O','19-Jul-80',110);
+insert into Patient values (healthCareID_seq.nextval,'Alissa','Reed','Anchorage','AK','O','02-Dec-91',115);
+insert into Patient values (healthCareID_seq.nextval,'Elise','Wright','Phoenix','AZ','O','30-Aug-55',120);
 					  
 
 					  
