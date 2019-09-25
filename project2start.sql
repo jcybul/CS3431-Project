@@ -11,6 +11,8 @@ drop sequence healthCareID_seq;
 drop sequence organID_seq;
 drop sequence invoiceNumber_seq;
 
+drop view MatchingBloodTypes;
+
 create table Doctor (
 	physicianID number,
 	Role varchar2(25),
@@ -198,23 +200,48 @@ insert into Operation values (130,195,invoiceNumber_seq.nextval,'1-Sep-19','F',1
 				       
 insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',100);
 insert into Organ values (organID_seq.nextval,150,'A','3-Oct-17',105);
-insert into Organ values (organID_seq.nextval,150,'B','3-Oct-18',110);
-insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-16',115);
+insert into Organ values (organID_seq.nextval,155,'B','3-Oct-18',110);
+insert into Organ values (organID_seq.nextval,160,'AB','3-Oct-16',115);
 insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',120);
-insert into Organ values (organID_seq.nextval,150,'A','3-Oct-18',125);
-insert into Organ values (organID_seq.nextval,150,'B','3-Oct-12',130);
+insert into Organ values (organID_seq.nextval,155,'A','3-Oct-18',125);
+insert into Organ values (organID_seq.nextval,160,'B','3-Oct-12',130);
 insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-18',135);
-insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',140);
-insert into Organ values (organID_seq.nextval,150,'A','3-Oct-18',145);
+insert into Organ values (organID_seq.nextval,155,'O','3-Oct-18',140);
+insert into Organ values (organID_seq.nextval,160,'A','3-Oct-18',145);
 insert into Organ values (organID_seq.nextval,150,'B','3-Oct-13',150);
-insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-18',155);
-insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',160);
+insert into Organ values (organID_seq.nextval,155,'AB','3-Oct-18',155);
+insert into Organ values (organID_seq.nextval,160,'O','3-Oct-18',160);
 insert into Organ values (organID_seq.nextval,150,'A','3-Oct-18',165);
-insert into Organ values (organID_seq.nextval,150,'B','3-Oct-18',170);
+insert into Organ values (organID_seq.nextval,155,'B','3-Oct-18',170);
 insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-18',175);
-insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',180);
+insert into Organ values (organID_seq.nextval,160,'O','3-Oct-18',180);
 insert into Organ values (organID_seq.nextval,150,'A','3-Oct-18',185);
-insert into Organ values (organID_seq.nextval,150,'B','3-Oct-18',190);
-insert into Organ values (organID_seq.nextval,150,'AB','3-Oct-18',195);
+insert into Organ values (organID_seq.nextval,155,'B','3-Oct-18',190);
+insert into Organ values (organID_seq.nextval,155,'AB','3-Oct-18',195);
 
-				    
+
+select * 
+from Doctor D join PCP P
+ on D.physicianId = P.physicianID;
+
+select * 
+from Doctor D join Surgeon S
+ on D.physicianid = S.physicianid;
+ 
+ select * 
+from Doctor D join OP O
+ on D.physicianid = O.physicianid;
+
+
+Select * from organ;
+
+Create view MatchingBloodTypes as 
+Select op.organtype as organType ,o.bloodtype as bType, Count(*)as cnt from
+organ o join patient p
+on o.bloodtype = p.bloodtype 
+join op
+on o.physicianid = op.physicianid
+group by rollup (op.organtype,o.bloodtype)
+order by op.organtype,o.bloodtype;
+
+Select * from MatchingBloodTypes;
