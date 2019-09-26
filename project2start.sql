@@ -1,3 +1,4 @@
+-- Joseph Cybul and Trevor Weiler: Project 2
 drop table Doctor cascade constraint;
 drop table OP cascade constraint;
 drop table PCP cascade constraint;
@@ -30,8 +31,8 @@ increment by 5;
 create table OP (
 	physicianID number,
 	Role varchar2(25) default 'OP' not null,
-	organBank varchar2(25),
 	organType varchar2(25),
+	organBank varchar2(25),
 	constraint OP_PK primary key (physicianID),
 	constraint OPRoleVal check (Role in ('OP')),
 	constraint OP_FK foreign key (physicianID, Role) references Doctor (physicianID, Role)
@@ -63,8 +64,8 @@ create table Patient (
 	lastName varchar2(25),
 	city varchar2(25),
 	state char(2),
-	bloodType varchar2(25),
 	birthDate date,
+	bloodType varchar2(25),
 	physicianID number,
 	constraint Patient_PK primary key (healthCareID),
 	constraint Patient_FK foreign key (physicianID) references PCP(physicianID),
@@ -97,12 +98,12 @@ increment by 5;
 				   
 
 create table Operation (
-	physicianID number,
-	healthCareID number,
 	invoiceNumber number,
 	operationDate date,
 	isSuccessful char(1),
 	cost number(9,2),
+	physicianID number,
+	healthCareID number,
 	constraint Operation_PK primary key (invoiceNumber),
 	constraint Operation_FK1 foreign key (physicianID) references Surgeon (physicianID),
 	constraint Operation_FK2 foreign key (healthCareID) references Patient(healthCareID),
@@ -149,53 +150,53 @@ insert into Surgeon values(135, 'Surgeon', 'T');
 insert into Surgeon values(140, 'Surgeon', 'F');
 insert into Surgeon values(145, 'Surgeon', 'T');
 
-insert into OP values(150, 'OP', 'Kidney Foundation', 'Kidney');
-insert into OP values(155, 'OP', 'The Living Bank', 'Heart');
-insert into OP values(160, 'OP', 'Donate Life America', 'Lungs');
+insert into OP values(150, 'OP', 'Kidney', 'Kidney Foundation');
+insert into OP values(155, 'OP', 'Heart', 'The Living Bank');
+insert into OP values(160, 'OP', 'Lungs', 'Donate Life America');
 
-insert into Patient values (healthCareID_seq.nextval,'Carl','Stein','Boston','MA','A','14-May-75',100);
-insert into Patient values (healthCareID_seq.nextval,'James','Lloyd','Cambridge','MA','A','14-May-89',105);
-insert into Patient values (healthCareID_seq.nextval,'Roman','Phillips','Worcester','MA','A','13-Jun-62',110);
-insert into Patient values (healthCareID_seq.nextval,'Daryl','Miller','Waltham','MA','A','16-Apr-76',115);
-insert into Patient values (healthCareID_seq.nextval,'Darcy','Carroll','Miami','FL','A','06-Nov-79',120);
-insert into Patient values (healthCareID_seq.nextval,'Kevin','Hamilton','Austin','TX','B','31-Dec-90',100);
-insert into Patient values (healthCareID_seq.nextval,'Violet','Casey','Houston','TX','B','19-Oct-99',105);
-insert into Patient values (healthCareID_seq.nextval,'Richard','Watson','Jersey','NY','B','29-Aug-05',110);
-insert into Patient values (healthCareID_seq.nextval,'Grace','Foster','Buffalo','NY','B','10-Aug-87',115);
-insert into Patient values (healthCareID_seq.nextval,'Adam','Tucker','Syracuse','NY','B','02-Aug-83',120);
-insert into Patient values (healthCareID_seq.nextval,'Robert','Robinson','Los Angeles','CA','AB','09-Jan-89',100);
-insert into Patient values (healthCareID_seq.nextval,'Amber','Sullivan','Los Angeles','CA','AB','17-May-68',105);
-insert into Patient values (healthCareID_seq.nextval,'Arnold','Owens','Chula Vista','CA','AB','14-Jul-95',115);
-insert into Patient values (healthCareID_seq.nextval,'Melissa','Casey','Dallas','TX','AB','16-Apr-99',120);
-insert into Patient values (healthCareID_seq.nextval,'Melanie','Perkins','Forth Worth','TX','AB','21-Jun-81',110);
-insert into Patient values (healthCareID_seq.nextval,'Marcus','Murphy','El Paso','TX','O','11-Jun-77',100);
-insert into Patient values (healthCareID_seq.nextval,'Grace','Ferguson','Akron','OH','O','12-Jun-83',105);
-insert into Patient values (healthCareID_seq.nextval,'Alina','Cooper','Cleveland','OH','O','19-Jul-80',110);
-insert into Patient values (healthCareID_seq.nextval,'Alissa','Reed','Anchorage','AK','O','02-Dec-91',115);
-insert into Patient values (healthCareID_seq.nextval,'Elise','Wright','Phoenix','AZ','O','30-Aug-55',120);
+insert into Patient values (healthCareID_seq.nextval,'Carl','Stein','Boston','MA','14-May-75','A',100);
+insert into Patient values (healthCareID_seq.nextval,'James','Lloyd','Cambridge','MA','14-May-89','A',105);
+insert into Patient values (healthCareID_seq.nextval,'Roman','Phillips','Worcester','MA','13-Jun-62','A',110);
+insert into Patient values (healthCareID_seq.nextval,'Daryl','Miller','Waltham','MA','16-Apr-76','A',115);
+insert into Patient values (healthCareID_seq.nextval,'Darcy','Carroll','Miami','FL','06-Nov-79','A',120);
+insert into Patient values (healthCareID_seq.nextval,'Kevin','Hamilton','Austin','TX','31-Dec-90','B',100);
+insert into Patient values (healthCareID_seq.nextval,'Violet','Casey','Houston','TX','19-Oct-99','B',105);
+insert into Patient values (healthCareID_seq.nextval,'Richard','Watson','Jersey','NY','29-Aug-05','B',110);
+insert into Patient values (healthCareID_seq.nextval,'Grace','Foster','Buffalo','NY','10-Aug-87','B',115);
+insert into Patient values (healthCareID_seq.nextval,'Adam','Tucker','Syracuse','NY','02-Aug-83','B',120);
+insert into Patient values (healthCareID_seq.nextval,'Robert','Robinson','Los Angeles','CA','09-Jan-89','AB',100);
+insert into Patient values (healthCareID_seq.nextval,'Amber','Sullivan','Los Angeles','CA','17-May-68','AB',105);
+insert into Patient values (healthCareID_seq.nextval,'Arnold','Owens','Chula Vista','CA','14-Jul-95','AB',115);
+insert into Patient values (healthCareID_seq.nextval,'Melissa','Casey','Dallas','TX','16-Apr-99','AB',120);
+insert into Patient values (healthCareID_seq.nextval,'Melanie','Perkins','Forth Worth','TX','21-Jun-81','AB',110);
+insert into Patient values (healthCareID_seq.nextval,'Marcus','Murphy','El Paso','TX','11-Jun-77','O',100);
+insert into Patient values (healthCareID_seq.nextval,'Grace','Ferguson','Akron','OH','12-Jun-83','O',105);
+insert into Patient values (healthCareID_seq.nextval,'Alina','Cooper','Cleveland','OH','19-Jul-80','O',110);
+insert into Patient values (healthCareID_seq.nextval,'Alissa','Reed','Anchorage','AK','02-Dec-91','O',115);
+insert into Patient values (healthCareID_seq.nextval,'Elise','Wright','Phoenix','AZ','30-Aug-55','O',120);
 					  
 
 					  
-insert into Operation values (125,100,invoiceNumber_seq.nextval,'1-Sep-19','F',10654.50);
-insert into Operation values (130,105,invoiceNumber_seq.nextval,'1-Sep-19','T',110.5);
-insert into Operation values (135,110,invoiceNumber_seq.nextval,'1-Sep-19','T',1203.90);
-insert into Operation values (140,115,invoiceNumber_seq.nextval,'1-Sep-19','T',13045.4);
-insert into Operation values (145,120,invoiceNumber_seq.nextval,'1-Sep-19','F',1000.3);
-insert into Operation values (125,125,invoiceNumber_seq.nextval,'1-Sep-19','T',100.12);
-insert into Operation values (130,130,invoiceNumber_seq.nextval,'1-Sep-19','T',10033.90);
-insert into Operation values (135,135,invoiceNumber_seq.nextval,'1-Sep-19','T',40000.10);
-insert into Operation values (140,140,invoiceNumber_seq.nextval,'1-Sep-19','T',143534);
-insert into Operation values (145,145,invoiceNumber_seq.nextval,'1-Sep-19','T',1345.4);
-insert into Operation values (125,150,invoiceNumber_seq.nextval,'1-Sep-19','T',10435.90);
-insert into Operation values (135,155,invoiceNumber_seq.nextval,'1-Sep-19','T',14540);
-insert into Operation values (130,160,invoiceNumber_seq.nextval,'1-Sep-19','T',10340);
-insert into Operation values (145,165,invoiceNumber_seq.nextval,'1-Sep-19','T',104350);
-insert into Operation values (140,170,invoiceNumber_seq.nextval,'1-Sep-19','T',10000.09);
-insert into Operation values (125,175,invoiceNumber_seq.nextval,'1-Sep-19','T',1030.04);
-insert into Operation values (135,180,invoiceNumber_seq.nextval,'1-Sep-19','T',10340.90);
-insert into Operation values (125,185,invoiceNumber_seq.nextval,'1-Sep-19','T',1034.23);
-insert into Operation values (145,190,invoiceNumber_seq.nextval,'1-Sep-19','T',12134.45);
-insert into Operation values (130,195,invoiceNumber_seq.nextval,'1-Sep-19','F',1000.345);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','F',10654.50,125,100);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',110.5,130,105);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',1203.90,135,110);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',13045.4,140,115);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','F',1000.30,145,120);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',100.12,125,125);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',10033.90,130,130);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',40000.10,135,135);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',143534,140,140);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',1345.4,145,145);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',10435.90,125,150);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',14540,135,155);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',10340,130,160);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',104350,145,165);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',10000.09,140,170);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',1030.04,125,175);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',10340.90,135,180);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',1034.23,125,185);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','T',12134.45,145,190);
+insert into Operation values (invoiceNumber_seq.nextval,'1-Sep-19','F',1000.345,130,195);
 				       
 				       
 insert into Organ values (organID_seq.nextval,150,'O','3-Oct-18',100);
@@ -225,22 +226,7 @@ insert into SurgeonPatient values(135, 135);
 insert into SurgeonPatient values(140, 140);
 insert into SurgeonPatient values(145, 145);
 
-
-select * 
-from Doctor D join PCP P
- on D.physicianId = P.physicianID;
-
-select * 
-from Doctor D join Surgeon S
- on D.physicianid = S.physicianid;
- 
- select * 
-from Doctor D join OP O
- on D.physicianid = O.physicianid;
-
-
-Select * from organ;
-
+-- 2
 Create view MatchingBloodTypes as 
 Select op.organtype as organType ,o.bloodtype as bType, Count(*)as cnt from
 organ o join patient p
@@ -250,22 +236,9 @@ on o.physicianid = op.physicianid
 group by rollup (op.organtype,o.bloodtype)
 order by op.organtype,o.bloodtype;
 
-Select * from MatchingBloodTypes;
-				       
-				    
-Create view MatchingBloodTypes as 
-Select op.organtype as organType ,o.bloodtype as bType, Count(*)as cnt from
-organ o join patient p
-on o.bloodtype = p.bloodtype 
-join op
-on o.physicianid = op.physicianid
-group by rollup (op.organtype,o.bloodtype)
-order by op.organtype,o.bloodtype;
+Select * from MatchingBloodTypes;		       
 
-Select * from MatchingBloodTypes;
---------------------------------
-
-
+-- 3
 Create or replace procedure SurgeonOperations(firstname varchar2, lastname varchar2) as 
 op_number number;
 Cursor c1 is 
@@ -273,7 +246,6 @@ Select s.firstName, s.lastName
 from operation o join doctor s
 on o.physicianID = s.physicianID
 where s.role = 'Surgeon';
-
 Begin
 op_number:= 0;
 For rec in c1 Loop
@@ -290,13 +262,9 @@ EXCEPTION
 WHEN NO_DATA_FOUND then 
 DBMS_OUTPUT.PUT_LINE('There is no surgeon that has operated with the name of Dr. '|| firstname || ' ' || lastname);
 END;
-/
-----------------------------------
-set serveroutput on;
-exec SurgeonOperations('Jhon','Smith');
-				       
-				      
-				       
+/				      
+
+-- 4
 Create or replace Trigger InsertErrorBirthDates 
 before insert on Patient 
 for each row declare
@@ -309,6 +277,7 @@ END If;
 end;
 /
 
+-- 5
 Create or replace trigger BadBloodType 
 before insert on Operation
 for each row declare 
@@ -324,6 +293,7 @@ End if;
 end;
 /
 
+-- 6
 Create or replace Trigger FailedOperation 
 before insert on Operation 
 for each row declare
@@ -338,7 +308,8 @@ Select bloodtype into tempBloodTypeOrgan from Organ where healthCareID = (:new.h
     end if;
 end;
 /
-				       
+
+-- 7
 Create or replace Trigger NoMatch 
 before insert on Operation 
 for each row declare
@@ -355,4 +326,4 @@ WHEN NO_DATA_FOUND then
 RAISE_APPLICATION_ERROR(-20005,'No match between Surgeon and Patient found in SurgeonPatient table');
 end;
 /
-				       
+   
