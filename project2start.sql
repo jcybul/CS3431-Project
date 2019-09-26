@@ -218,6 +218,12 @@ insert into Organ values (organID_seq.nextval,160,'O','3-Oct-18',180);
 insert into Organ values (organID_seq.nextval,150,'A','3-Oct-18',185);
 insert into Organ values (organID_seq.nextval,155,'B','3-Oct-18',190);
 insert into Organ values (organID_seq.nextval,155,'AB','3-Oct-18',195);
+				       
+insert into SurgeonPatient values(125, 125);
+insert into SurgeonPatient values(130, 130);
+insert into SurgeonPatient values(135, 135);
+insert into SurgeonPatient values(140, 140);
+insert into SurgeonPatient values(145, 145);
 
 
 select * 
@@ -332,3 +338,21 @@ Select bloodtype into tempBloodTypeOrgan from Organ where healthCareID = (:new.h
     end if;
 end;
 /
+				       
+Create or replace Trigger NoMatch 
+before insert on Operation 
+for each row declare
+tempPhysicianID number;
+tempHealthCareID number;
+Begin
+select physicianID, healthCareID into tempPhysicianID, tempHealthCareID 
+from SurgeonPatient where physicianID = (:new.physicianID) and healthCareID = (:new.healthCareID);
+if (tempPhysicianID is null or tempHealthCareID is null) then
+    RAISE NO_DATA_FOUND;
+end if;
+EXCEPTION 
+WHEN NO_DATA_FOUND then 
+RAISE_APPLICATION_ERROR(-20005,'No match between Surgeon and Patient found in SurgeonPatient table');
+end;
+/
+				       
