@@ -101,7 +101,7 @@ public class pf37 {
                                         "City: " + city + "\n" +
                                         "State: " + state + "\n" +
                                         "Birth Date: " + bdate + "\n" +
-                                        "Blood Type: " + btype);
+                                        "Blood Type: " + btype + "\n");
                             }
 
                             rset.close();
@@ -150,7 +150,7 @@ public class pf37 {
                                         "Full Name: " + name + " " + lastname + "\n" +
                                         "Physician ID : " + pID + "\n" +
                                         "Specialty: " + specialty + "\n" +
-                                        "Medical Facility: " + medf);
+                                        "Medical Facility: " + medf + "\n");
                             }
 
                             rset.close();
@@ -240,7 +240,7 @@ public class pf37 {
                                 "Patient Full Name: " + Pname + "\n" +
                                 "Blood Type: " + btype + "\n" +
                                 "City: " + city + "\n" +
-                                "State: " + state);
+                                "State: " + state + "\n");
 
                         break;
 
