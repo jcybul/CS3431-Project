@@ -1,9 +1,8 @@
-
-
 import java.sql.*;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
 
+import static java.lang.System.clearProperty;
 import static java.lang.System.exit;
 
 public class pf37 {
@@ -93,7 +92,13 @@ public class pf37 {
                                 city = rset.getString("city");
                                 bdate = rset.getDate("birthdate").toString();
                                 btype = rset.getString("bloodtype");
+                                
+                            }
 
+                            rset.close();
+                            stmt.close();
+
+                            if(ID != 0) {
                                 System.out.print("Patient Information:\n" +
                                         "Healthcare ID: " + ID + "\n" +
                                         "First Name: " + name + "\n" +
@@ -101,11 +106,12 @@ public class pf37 {
                                         "City: " + city + "\n" +
                                         "State: " + state + "\n" +
                                         "Birth Date: " + bdate + "\n" +
-                                        "Blood Type: " + btype + "\n");
+                                        "Blood Type: " + btype);
+                            }
+                            else{
+                                System.out.println(" The Patient  ID: "+ healthcareid + " is incorrect");
                             }
 
-                            rset.close();
-                            stmt.close();
 
                         } catch (SQLException e) {
                             System.out.println("Get Data Failed! Check output console");
@@ -146,15 +152,27 @@ public class pf37 {
                                 specialty = rset.getString("specialty");
                                 medf = rset.getString("medicalfacility");
 
+
+
+                            }
+
+
+
+                            rset.close();
+                            stmt.close();
+
+
+                            if(pID != 0 ) {
                                 System.out.print("Patient Information:\n" +
                                         "Full Name: " + name + " " + lastname + "\n" +
                                         "Physician ID : " + pID + "\n" +
                                         "Specialty: " + specialty + "\n" +
-                                        "Medical Facility: " + medf + "\n");
+                                        "Medical Facility: " + medf);
+                            }
+                            else{
+                                System.out.println(" The Physician ID: "+ phiscianID + " is incorrect");
                             }
 
-                            rset.close();
-                            stmt.close();
                         } catch (SQLException e) {
                             System.out.println("Get Data Failed! Check output console");
                             e.printStackTrace();
@@ -231,17 +249,20 @@ public class pf37 {
                             e.printStackTrace();
                             return;
                         }
-
-                        System.out.print("Patient Information:\n" +
-                                "Invoice Number: " + iNum + "\n" +
-                                "Operation Date: " + oDate + "\n" +
-                                "Surgeon Full Name: " + SurgeonName + "\n" +
-                                "Board Certified?: " + Certified + "\n" +
-                                "Patient Full Name: " + Pname + "\n" +
-                                "Blood Type: " + btype + "\n" +
-                                "City: " + city + "\n" +
-                                "State: " + state + "\n");
-
+                        if(iNum != 0) {
+                            System.out.print("Patient Information:\n" +
+                                    "Invoice Number: " + iNum + "\n" +
+                                    "Operation Date: " + oDate + "\n" +
+                                    "Surgeon Full Name: " + SurgeonName + "\n" +
+                                    "Board Certified?: " + Certified + "\n" +
+                                    "Patient Full Name: " + Pname + "\n" +
+                                    "Blood Type: " + btype + "\n" +
+                                    "City: " + city + "\n" +
+                                    "State: " + state);
+                        }
+                        else{
+                            System.out.println("Invoice num: " + opnum + " is not correct." );
+                        }
                         break;
 
 
@@ -295,9 +316,7 @@ public class pf37 {
 
         }
 
-
-
     }
 
-
 }
+
