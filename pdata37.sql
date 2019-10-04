@@ -1,115 +1,21 @@
-drop table Doctor cascade constraint;
-drop table OP cascade constraint;
-drop table PCP cascade constraint;
-drop table Surgeon cascade constraint;
-drop table Organ cascade constraint;
-drop table Patient cascade constraint;
-drop table Operation cascade constraint;
-drop table SurgeonPatient cascade constraint;
+
 drop sequence physicianID_seq;
 drop sequence healthCareID_seq;
-drop sequence organID_seq;
 drop sequence invoiceNumber_seq;
 
-create table Doctor (
-	physicianID number,
-	Role varchar2(25),
-	firstName varchar2(25),
-	lastName varchar2(25),
-	constraint Doctor_PK primary key (physicianID),
-	constraint Doctor_UN unique (physicianID, Role),
-	constraint DoctorRoleVal check (Role in ('OP', 'PCP', 'Surgeon', 'Other'))
-);
+
 
 create sequence physicianID_seq
 start with 37000
 increment by 10;
 
-create table OP (
-	physicianID number,
-	Role varchar2(25) default 'OP' not null,
-	organType varchar2(25),
-	organBank varchar2(25),
-	constraint OP_PK primary key (physicianID),
-	constraint OPRoleVal check (Role in ('OP')),
-	constraint OP_FK foreign key (physicianID, Role) references Doctor (physicianID, Role)
-);
-
-create table PCP (
-	physicianID number,
-	Role varchar2(25) default 'PCP' not null,
-	specialty varchar2(25),
-	medicalFacility varchar2(25),
-	constraint PCP_PK primary key (physicianID),
-	constraint PCPRoleVal check (Role in ('PCP')),
-	constraint PCP_FK foreign key (physicianID, Role) references Doctor (physicianID, Role)
-);
-
-create table Surgeon (
-	physicianID number,
-	Role varchar2(25) default 'Surgeon' not null,
-	boardCertified char(1),
-	constraint Surgeon_PK primary key (physicianID),
-	constraint SurgeonRoleVal check (Role in ('Surgeon')),
-	constraint SurgeonBoardCertifiedVal check (boardCertified in ('Y', 'N')),
-	constraint Surgeon_FK foreign key (physicianID, Role) references Doctor (physicianID, Role)
-);
-
-create table Patient (
-	healthCareID number,
-	firstName varchar2(25),
-	lastName varchar2(25),
-	city varchar2(25),
-	state char(2),
-	birthDate date,
-	bloodType varchar2(25),
-	physicianID number,
-	constraint Patient_PK primary key (healthCareID),
-	constraint Patient_FK foreign key (physicianID) references PCP(physicianID),
-	constraint PatientVal check (bloodType in ('A', 'B', 'AB', 'O'))
-);
 create sequence healthCareID_seq
 start with 37000
 increment by 10;
 
-create table Organ (
-	organID number,
-	physicianID number,
-	bloodType varchar2(25),
-	dateRemoved date,
-	healthCareID number,
-	constraint Organ_PK primary key (organID, physicianID),
-	constraint Organ_FK1 foreign key (physicianID) references OP(physicianID),
-	constraint Organ_FK2 foreign key (healthCareID) references Patient(healthCareID),
-	constraint OrganVal check (bloodType in ('A', 'B', 'AB', 'O'))
-);
-create sequence organID_seq 
-start with 37000
-increment by 10;
-
-create table Operation (
-	invoiceNumber number,
-	operationDate date,
-	isSuccessful char(1),
-	cost number(9,2),
-	physicianID number,
-	healthCareID number,
-	constraint Operation_PK primary key (invoiceNumber),
-	constraint Operation_FK1 foreign key (physicianID) references Surgeon (physicianID),
-	constraint Operation_FK2 foreign key (healthCareID) references Patient(healthCareID),
-	constraint OperationVal check (isSuccessful in ('Y', 'N'))
-);
 create sequence invoiceNumber_seq 
 start with 37000
 increment by 10;
-
-create table SurgeonPatient (
-	physicianID number,
-	healthCareID number,
-	constraint SurgeonPatient_PK primary key (physicianID, healthCareID),
-	constraint SurgeonPatient_FK1 foreign key (physicianID) references Surgeon (physicianID),
-	constraint SurgeonPatient_FK2 foreign key (healthCareID) references Patient(healthCareID)
-);
 
 
 insert into Doctor values(physicianID_seq.nextval, 'PCP', 'Matthew', 'Cantu');
@@ -190,26 +96,26 @@ insert into Patient values (healthCareID_seq.nextval,'Daryl','Miller','Waltham',
 
 
 
-	insert into Organ values (organID_seq.nextval,37100,'O','3-Oct-18',37000);
-	insert into Organ values (organID_seq.nextval,37100,'A','3-Oct-17',37010);
-	insert into Organ values (organID_seq.nextval,37110,'B','3-Oct-18',37020);
-	insert into Organ values (organID_seq.nextval,37120,'AB','3-Oct-16',37030);
-	insert into Organ values (organID_seq.nextval,37100,'O','3-Oct-18',37040);
-	insert into Organ values (organID_seq.nextval,37110,'A','3-Oct-18',37050);
-	insert into Organ values (organID_seq.nextval,37120,'B','3-Oct-12',37060);
-	insert into Organ values (organID_seq.nextval,37100,'AB','3-Oct-18',37070);
-	insert into Organ values (organID_seq.nextval,37110,'O','3-Oct-18',37080);
-	insert into Organ values (organID_seq.nextval,37120,'A','3-Oct-18',37090);
-	insert into Organ values (organID_seq.nextval,37100,'B','3-Oct-13',37100);
-	insert into Organ values (organID_seq.nextval,37110,'AB','3-Oct-18',37110);
-	insert into Organ values (organID_seq.nextval,37120,'O','3-Oct-18',37120);
-	insert into Organ values (organID_seq.nextval,37120,'A','3-Oct-18',37130);
-	insert into Organ values (organID_seq.nextval,37110,'B','3-Oct-18',37140);
-	insert into Organ values (organID_seq.nextval,37100,'AB','3-Oct-18',37150);
-	insert into Organ values (organID_seq.nextval,37120,'O','3-Oct-18',37160);
-	insert into Organ values (organID_seq.nextval,37100,'A','3-Oct-18',37170);
-	insert into Organ values (organID_seq.nextval,37110,'B','3-Oct-18',37180);
-	insert into Organ values (organID_seq.nextval,37110,'AB','3-Oct-18',37190);
+	insert into Organ values (1,37100,'O','3-Oct-18',37000);
+	insert into Organ values (2,37100,'A','3-Oct-17',37010);
+	insert into Organ values (3,37110,'B','3-Oct-18',37020);
+	insert into Organ values (4,37120,'AB','3-Oct-16',37030);
+	insert into Organ values (5,37100,'O','3-Oct-18',37040);
+	insert into Organ values (6,37110,'A','3-Oct-18',37050);
+	insert into Organ values (7,37120,'B','3-Oct-12',37060);
+	insert into Organ values (8,37100,'AB','3-Oct-18',37070);
+	insert into Organ values (9,37110,'O','3-Oct-18',37080);
+	insert into Organ values (10,37120,'A','3-Oct-18',37090);
+	insert into Organ values (11,37100,'B','3-Oct-13',37100);
+	insert into Organ values (12,37110,'AB','3-Oct-18',37110);
+	insert into Organ values (13,37120,'O','3-Oct-18',37120);
+	insert into Organ values (14,37120,'A','3-Oct-18',37130);
+	insert into Organ values (15,37110,'B','3-Oct-18',37140);
+	insert into Organ values (16,37100,'AB','3-Oct-18',37150);
+	insert into Organ values (17,37120,'O','3-Oct-18',37160);
+	insert into Organ values (18,37100,'A','3-Oct-18',37170);
+	insert into Organ values (19,37110,'B','3-Oct-18',37180);
+	insert into Organ values (20,37110,'AB','3-Oct-18',37190);
 
 	insert into SurgeonPatient values(37050, 37050);
 	insert into SurgeonPatient values(37060, 37060);
